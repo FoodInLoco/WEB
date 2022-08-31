@@ -5,39 +5,27 @@ import {
     NavMenu,
     NavBtn,
     NavBtnLink,
+    Container,
 } from './styles';
 
 export const Navbar = () => {
     return (
-        <>
+        <Container>
             <Nav>
                 <Bars />
 
                 <NavMenu>
-                    <NavLink to='/about'>
-                        ts
+                    <NavLink to='/'>
+                        home
                     </NavLink>
                     <NavLink to='/events' >
                         Events
                     </NavLink>
-                    <NavLink to='/annual' >
-                        Annual Report
-                    </NavLink>
-                    <NavLink to='/team' >
-                        Teams
-                    </NavLink>
-                    <NavLink to='/blogs' >
-                        Blogs
-                    </NavLink>
-                    <NavLink to='/sign-up' >
-                        Sign Up
-                    </NavLink>
-
                 </NavMenu>
                 <NavBtn>
                     <NavBtnLink to='/signin'>Sign In</NavBtnLink>
                 </NavBtn>
             </Nav>
-        </>
+        </Container>
     );
 };

@@ -4,7 +4,6 @@ import { Home } from "../pages/home";
 export const AppRoutes = () => {
   return (
     <>
-      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/test" element={<Home />} />
