@@ -20,13 +20,18 @@ z-index: 12;
 `;
 
 export const NavLink = styled(Link)`
+font-family: 'Lexend Deca';
 color: #808080;
+font-style: normal;
+font-weight: 700;
+font-size: 17px;
+line-height: 25px;
 display: flex;
 align-items: center;
-text-decoration: none;
-padding: 0 1rem;
+text-align: center;
 height: 100%;
 cursor: pointer;
+text-decoration: none;
 &.active {
 	color: #000000;
 }

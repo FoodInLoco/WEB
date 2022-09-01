@@ -1,3 +1,4 @@
+import { SearchBar } from '../SearchBar';
 import {
     Nav,
     NavLink,
@@ -12,18 +13,17 @@ export const Navbar = () => {
     return (
         <Container>
             <Nav>
-                <Bars />
-
                 <NavMenu>
                     <NavLink to='/'>
-                        home
+                        Restaurantes
                     </NavLink>
+                    |
                     <NavLink to='/events' >
-                        Events
+                     Lojas   
                     </NavLink>
                 </NavMenu>
                 <NavBtn>
-                    <NavBtnLink to='/signin'>Sign In</NavBtnLink>
+                <SearchBar/>
                 </NavBtn>
             </Nav>
         </Container>

@@ -1,9 +1,9 @@
 body {
   margin: 0;
-  background-color: yellowgreen;
+  background-color: #F3F2F8;
   display: flex;
   flex-direction: column;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Lexend Deca', Tahoma, Geneva, Verdana, sans-serif;
   color-scheme: light dark;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
