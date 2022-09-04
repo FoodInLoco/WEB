@@ -6,7 +6,7 @@ const Routes = () => {
   const { signed, loading } = useAuth();
 
   if (loading) {
-    return <div>Carregando </div>;
+    return <div>Carregando... </div>;
   }
 
   return <AppRoutes />;

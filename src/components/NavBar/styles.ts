@@ -5,15 +5,15 @@ import styled from 'styled-components';
 export const Container = styled.header`
  position: sticky;
  top: 0px;
+ padding: 20px 20px;
  z-index: 1;
 `;
 
 export const Nav = styled.nav`
-background: #63D471;
 height: 85px;
+width: 100%;
 display: flex;
 justify-content: space-between;
-padding: 0.2rem calc((100vw - 1000px) / 2);
 z-index: 12;
 /* Third Nav */
 /* justify-content: flex-start; */
@@ -21,19 +21,22 @@ z-index: 12;
 
 export const NavLink = styled(Link)`
 font-family: 'Lexend Deca';
+margin: 0 10%;
 color: #808080;
 font-style: normal;
 font-weight: 700;
 font-size: 17px;
 line-height: 25px;
 display: flex;
-align-items: center;
 text-align: center;
-height: 100%;
 cursor: pointer;
 text-decoration: none;
 &.active {
 	color: #000000;
+
+}
+&:hover {
+	color: #6f6f70;
 }
 `;
 
@@ -53,7 +56,10 @@ color: #808080;
 
 export const NavMenu = styled.div`
 display: flex;
+flex-direction: row;
+padding: 0 10%;
 align-items: center;
+justify-content: space-between;
 margin-right: -24px;
 /* Second Nav */
 /* margin-right: 24px; */
@@ -65,7 +71,19 @@ white-space: nowrap; */
 }
 `;
 
-export const NavBtn = styled.nav`
+export const NavBtn = styled.div`
+display: flex;
+align-items: center;
+margin-right: 24px;
+/* Third Nav */
+/* justify-content: flex-end;
+width: 100vw; */
+@media screen and (max-width: 768px) {
+	display: none;
+}
+`;
+
+export const LogoArea = styled.div`
 display: flex;
 align-items: center;
 margin-right: 24px;

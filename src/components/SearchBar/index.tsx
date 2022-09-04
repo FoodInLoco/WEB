@@ -1,7 +1,7 @@
 import { Container, IconInput, SearchInput } from "./styles";
 
-export function SearchBar() {
+export function Search() {
     return <Container>
-        <SearchInput placeholder="Buscar Restaurantes"  />
+        <SearchInput placeholder="Buscar Restaurantes" />
     </Container>
 }
