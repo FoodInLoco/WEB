@@ -1,3 +1,4 @@
+import { SearchByCity } from "../SearchByCity"
 import { Container, TextCard } from "./styles"
 
 type IMainCardProps = {
@@ -6,5 +7,6 @@ type IMainCardProps = {
 export function MainCard({ text = "Text" }: IMainCardProps) {
   return <Container>
     <TextCard>{text}</TextCard>
+    <SearchByCity />
   </Container>
 }

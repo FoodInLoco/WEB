@@ -13,22 +13,19 @@ export const IconInput = styled.div`
   top:50%;
   left:2px;
   transform: translateY(-50%);
+
  `
 export const SearchInput = styled.input`
- padding: 0 10px;
- outline: none;
- height: 42px;
- width: 210px;
- background: #F8F5F5;
- mix-blend-mode: normal;
- border: 1px solid rgba(0, 0, 0, 0.14);
- box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
- border-radius: 50px;    
- font-style: normal;
- font-weight: 600;
- font-size: 12px;
-font-family: 'Lexend Deca';
-
+outline: none;
+margin: 10px;
+padding: 0 10px;
+width: 92%;
+height: 82px;
+font-size: 30px;
+background: #F8F5F5;
+border: none;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 50px;
  ::placeholder {
     color: #B6B6B6;
  };
