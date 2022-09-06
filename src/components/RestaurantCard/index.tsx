@@ -9,7 +9,7 @@ import { Container } from './styles';
 
 export default function RestaurantCard() {
   return (
-    <Container sx={{ minWidth: 100, maxWidth: 225 }}>
+    <Container sx={{ minWidth: 100, maxWidth: 150 }}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           Word of the Day

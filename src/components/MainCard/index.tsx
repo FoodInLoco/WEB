@@ -5,8 +5,10 @@ type IMainCardProps = {
   text: string
 }
 export function MainCard({ text = "Text" }: IMainCardProps) {
-  return <Container>
-    <TextCard>{text}</TextCard>
+  return <Container xs={12} sm={12} md={4}>
+  <TextCard>
+      Escolha a opção mais perto de você
+  </TextCard>
     <SearchByCity />
   </Container>
 }
