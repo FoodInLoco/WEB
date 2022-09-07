@@ -1,35 +1,37 @@
-import * as React from "react";
-import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Unstable_Grid2";
-import RestaurantCard from "../../components/RestaurantCard";
-import { MainCard } from "../../components/MainCard";
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import { MainCard } from '../../components/MainCard';
+import { Card } from '@mui/material';
+import { RestaurandCard } from '../../components/RestaurantCard';
 
 export function Home() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Grid container>
-      <MainCard text="Escolha aopção mais perto de você."/>
-        <Grid xs={12} sm={6} md={8} >
-          <Grid container columns={{ xs: 4, sm: 2, md: 4 }}>
-            <RestaurantCard />
-            <RestaurantCard />
-            <RestaurantCard />
-            <RestaurantCard />
-            <RestaurantCard />
-            <RestaurantCard />
-            <RestaurantCard />
-            <RestaurantCard />
-          </Grid>
+    <Box component="main" sx={{ p: 3, flexGrow: 1 }}>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={8} md={4}>
+          <MainCard text='Escolha a opção mais perto de você.' />
+        </Grid>
+        <Grid item xs={12} sm={8} md={8} columns={4}>
+          <Box
+            sx={{
+              p: 2,
+              display: 'flex',
+              gridTemplateColumn: { md: '2fr 2fr' },
+              gap: 2,
+              flexDirection: "column",
+              height: 700,
+              overflow: "hidden",
+              overflowX: "scroll",
+              flexWrap: "wrap",
+            }}          >
+            {[0, 1, 2, 3, 4, 6, 8, 12, 16, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60].map((key) => (
+              <RestaurandCard key={key
+              } />
+            ))}
+          </Box>
         </Grid>
       </Grid>
     </Box>

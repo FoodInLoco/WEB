@@ -1,16 +1,15 @@
 import styled from "styled-components";
-import theme from "../../theme";
-import Grid from "@mui/material/Unstable_Grid2";
+import { Paper } from "@mui/material";
 
-export const Container = styled(Grid)`
-background-color: ${theme.COLORS.PRIMARY};
-justify-content:center;
-align-items:center;
+export const Container = styled(Paper)`
 `
-export const TextCard = styled.h1`
-margin: 0;
+export const TitleCard = styled.h1`
+margin: 0 10px;
 font-family: 'Lexend Deca';
 font-style: bold;
 font-weight: 800;
 font-size: 85px;
+`;
+
+export const TextContainer = styled.div`
 `;

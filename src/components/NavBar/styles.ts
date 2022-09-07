@@ -11,7 +11,7 @@ export const Container = styled.header`
 `;
 
 export const Nav = styled.nav`
-height: 85px;
+height: 70px;
 width: 100%;
 display: flex;
 justify-content: space-between;

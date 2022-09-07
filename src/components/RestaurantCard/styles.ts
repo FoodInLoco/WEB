@@ -5,7 +5,8 @@ export const Container = styled(Card)`
 background: #F8F5F5;
 margin:10px;
 &:hover {
-    background-color: #161696;
-    transform: scale(1.3);
+  cursor: pointer;
+  transition: transform .2s ease-out;
+    transform: scale(1.1);
   }
 `

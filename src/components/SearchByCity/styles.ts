@@ -1,21 +1,7 @@
 import styled from "styled-components";
-
 export const Container = styled.div`
-display: grid;
-place-items: center;
 `
 
-export const IconInput = styled.div`
-   height: 1.5rem;
-  width: 1.5rem;
-  background-color: red;
-  padding: 4px;
-  box-sizing:border-box;
-  top:50%;
-  left:2px;
-  transform: translateY(-50%);
-
- `
 export const SearchInput = styled.input`
 outline: none;
 width:90%;

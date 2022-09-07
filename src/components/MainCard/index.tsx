@@ -1,14 +1,26 @@
+import { Paper } from "@mui/material";
+import theme from "../../theme";
 import { SearchByCity } from "../SearchByCity"
-import { Container, TextCard } from "./styles"
+import { TitleCard, TextContainer } from "./styles"
 
 type IMainCardProps = {
   text: string
 }
-export function MainCard({ text = "Text" }: IMainCardProps) {
-  return <Container xs={12} sm={12} md={4}>
-  <TextCard>
-      Escolha a opção mais perto de você
-  </TextCard>
-    <SearchByCity />
-  </Container>
+export function MainCard({ text = "Você precisa digitar uma mensagem" }: IMainCardProps) {
+  return (
+    <Paper sx={{
+      bgcolor: `${theme.COLORS.PRIMARY}`,
+      minHeight: 700,
+      display: 'flex',
+      flexDirection: "column",
+      justifyContent: "space-between"
+    }}>
+      <TextContainer>
+        <TitleCard>
+          {text}
+        </TitleCard>
+      </TextContainer>
+      <SearchByCity />
+    </Paper >
+  )
 }
