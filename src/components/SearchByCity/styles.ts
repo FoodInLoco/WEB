@@ -1,11 +1,14 @@
 import styled from "styled-components";
 export const Container = styled.div`
+display: flex;
+justify-content:space-around;
+align-items:center;
+padding: 10px 0;
 `
 
 export const SearchInput = styled.input`
 outline: none;
 width:90%;
-margin:10px;
 padding:0 10px;
 height: 72px;
 font-size: 20px;

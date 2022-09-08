@@ -41,7 +41,7 @@ const card = (
 
 export function RestaurandCard() {
   return (
-    <Box sx={{ minWidth: 260, maxWidth: 260 }}>
+    <Box sx={{ minWidth: 260, maxWidth: 260, marginBottom: 1, marginLeft: 2 }}>
       <Card variant="outlined">{card}</Card>
     </Box>
   );

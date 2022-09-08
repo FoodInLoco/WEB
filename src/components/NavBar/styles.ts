@@ -61,7 +61,6 @@ flex-direction: row;
 padding: 0 10%;
 align-items: center;
 justify-content: space-between;
-margin-right: -24px;
 /* Second Nav */
 /* margin-right: 24px; */
 /* Third Nav */

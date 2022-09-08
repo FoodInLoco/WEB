@@ -14,13 +14,11 @@ export function Home() {
         <Grid item xs={12} sm={8} md={4}>
           <MainCard text='Escolha a opção mais perto de você.' />
         </Grid>
-        <Grid item xs={12} sm={8} md={8} columns={4}>
+        <Grid item xs={12} sm={8} md={8}>
           <Box
             sx={{
-              p: 2,
               display: 'flex',
               gridTemplateColumn: { md: '2fr 2fr' },
-              gap: 2,
               flexDirection: "column",
               height: 700,
               overflow: "hidden",
