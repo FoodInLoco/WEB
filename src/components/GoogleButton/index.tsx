@@ -6,7 +6,7 @@ type IGoogleButtonProps = {
 export function GoogleButton({ width = '80%', height = '80%' }: IGoogleButtonProps) {
   return (
     <Container>
-      <img width={width} height={height} src="./src/assets/google.svg" alt="Google login" />
+      <img width={width} height={height} src="/google.svg" alt="Google login" />
     </Container>
   )
 }

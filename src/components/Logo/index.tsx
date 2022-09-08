@@ -6,7 +6,7 @@ type ILogoProps = {
 export function Logo({ width = '80%', height = '80%' }: ILogoProps) {
   return (
     <Container>
-      <img width={width} height={height} src="./src/assets/foodInLoco.svg" alt="Food In Loco" />
+      <img width={width} height={height} src="/foodInLoco.svg" alt="Food In Loco" />
     </Container>
   )
 }

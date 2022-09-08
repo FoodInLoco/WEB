@@ -7,7 +7,7 @@ type ILoginButtonProps = {
 export function LoginButton({ width = '50%', height = '50%' }: ILoginButtonProps) {
   return (
     <Container>
-      <img width={width} height={height} src="./src/assets/login.svg" alt="Google login" />
+      <img width={width} height={height} src="/login.svg" alt="Google login" />
     </Container>
   )
 }
