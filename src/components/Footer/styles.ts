@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 export const media = {
   desktop: (...args: any) => css`
     @media (min-width: 870px) {
-      ${css({ ...args })};
+      ${css(args)};
     }
   `
 };
