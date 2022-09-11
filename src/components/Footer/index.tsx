@@ -32,7 +32,7 @@ const SocialList = () => (
 
 export function FooterComponent() {
     return <Footer>
-        <TopBar>
+        {/* <TopBar>
             <GetTheApp>
                 <GetTheAppTitle> FOOINLOCO</GetTheAppTitle>
                 <AppStoreApp />
@@ -41,7 +41,7 @@ export function FooterComponent() {
             <DesktopSocialList>
                 <SocialList />
             </DesktopSocialList>
-        </TopBar>
+        </TopBar> */}
         <HR />
         <BottomBar>
             {menu.map(({ name, links }) => (

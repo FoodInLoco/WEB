@@ -9,7 +9,6 @@ export const media = {
 };
 
 export const Footer = styled.footer`
-  font-family: nunito-sans, sans-serif;
   text-align: center;
   ${media.desktop`
     text-align: left;
@@ -18,7 +17,7 @@ export const Footer = styled.footer`
 
 export const TopBar = styled.div`
   margin: auto;
-  max-width: 1280px;
+  max-width: 1250px;
   padding: 40px 0;
   ${media.desktop`
     padding: 45px 80px;
@@ -33,7 +32,6 @@ export const GetTheApp = styled.div`
   font-weight: 900;
   line-height: 1.11;
   color: #2b2738;
-  margin: 0 -15px;
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
