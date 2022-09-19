@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { Link, TextField } from '@mui/material';
 import { Container, Content } from "./styles"
+import { useAuth } from '../../contexts/auth';
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',
@@ -28,7 +29,7 @@ export function LoginModal({ open = false,
   setOpen }: ILoginModalProps) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+ const {sigIn} = useAuth()
   return (
     <Container>
       <Modal
