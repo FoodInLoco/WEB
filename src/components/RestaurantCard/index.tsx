@@ -5,44 +5,49 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Avatar, CardHeader, IconButton } from '@mui/material';
+import { deepOrange, red } from '@mui/material/colors';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { Container } from './styles';
+import { useNavigate } from 'react-router-dom';
 
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-  >
-    •
-  </Box>
-);
-
-const card = (
-  <React.Fragment>
-    <CardContent>
-      <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-        Word of the Day
-      </Typography>
-      <Typography variant="h5" component="div">
-        be{bull}nev{bull}o{bull}lent
-      </Typography>
-      <Typography sx={{ mb: 1.5 }} color="text.secondary">
-        adjective
-      </Typography>
-      <Typography variant="body2">
-        well meaning and kindly.
-        <br />
-        {'"a benevolent smile"'}
-      </Typography>
-    </CardContent>
-    <CardActions>
-      <Button size="small">Learn More</Button>
-    </CardActions>
-  </React.Fragment>
-);
-
-export function RestaurandCard() {
+type IRestaurantProps = {
+  name: string
+}
+export function RestaurandCard({ name }: IRestaurantProps) {
+  const navigate = useNavigate();
+  function handleClick() {
+    navigate(`/restaurant?name=${name}`);
+  }
   return (
-    <Box sx={{ minWidth: 260, maxWidth: 260, marginBottom: 1, marginLeft: 2 }}>
-      <Card variant="outlined">{card}</Card>
-    </Box>
+    <Container sx={{ minWidth: 260, maxWidth: 260, marginBottom: 1, marginLeft: 2 }}>
+      <Card variant="outlined">
+        <CardHeader
+          avatar={
+            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+              R
+            </Avatar>
+          }
+          action={
+            <IconButton aria-label="settings">
+              <MoreVertIcon />
+            </IconButton>
+          }
+          title="Titulo"
+          subheader="Localização"
+        />
+        <CardContent>
+          <Typography variant="body2">
+            Descrição
+            <br />
+            {'"teste"'}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button onClick={handleClick} size="small">Conhecer restaurante</Button>
+        </CardActions>
+
+      </Card>
+    </Container>
   );
 }

@@ -2,12 +2,12 @@ import { AppStoreApp, BottomBar, DesktopSocialList, Facebook, Footer, GetTheApp,
 
 const menu = [
     {
-        name: "Program Guides",
+        name: "Links",
         links: [
-            { title: "TESTE", url: "www.openfit.com" },
-            { title: "TESTE2", url: "www.openfit.com" },
-            { title: "TESTE", url: "www.openfit.com" },
-            { title: "TESTE", url: "www.openfit.com" }
+            { title: "link", url: "www.openfit.com" },
+            { title: "link", url: "www.openfit.com" },
+            { title: "link", url: "www.openfit.com" },
+            { title: "link", url: "www.openfit.com" }
         ]
     },
     {

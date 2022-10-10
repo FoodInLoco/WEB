@@ -11,6 +11,7 @@ export function MainCard({ text = "Você precisa digitar uma mensagem" }: IMainC
     <Paper sx={{
       bgcolor: `${theme.COLORS.PRIMARY}`,
       minHeight: 700,
+      minWidth: 400,
       display: 'flex',
       flexDirection: "column",
       justifyContent: "space-between"

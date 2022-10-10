@@ -36,7 +36,7 @@ export function Header() {
               <NavLink to='/'>
                 Restaurantes
               </NavLink>
-              <NavLink to='/events' >
+              <NavLink to='/restaurant' >
                 Lojas
               </NavLink>
             </NavMenu>
