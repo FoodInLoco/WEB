@@ -1,3 +1,5 @@
+import { api } from "./api";
+
 interface Response {
     token: string;
     user: {
@@ -5,17 +7,12 @@ interface Response {
         email: string;
     };
 }
+type Request ={
+    password:string;
+    login:string;
+}
 
-export function signIn(): Promise<Response> {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve({
-                token: 'jk12h3j21h3jk212h3jk12h3jkh12j3kh12k123hh21g3f12f3',
-                user: {
-                    name: 'foodInLoco',
-                    email: 'teste@teste.com.br',
-                },
-            });
-        }, 2000);
-    });
+
+export async function signIn(data :Request): Promise<Response> {
+  return await api.post("/auth",data)
 }

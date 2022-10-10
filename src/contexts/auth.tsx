@@ -42,7 +42,8 @@ const AuthProvider = ({ children }: { children: any }) => {
   });
 
   async function signIn() {
-    const response = await auth.signIn();
+    const response = await auth.signIn({login:'macdonalds',password:'12345'});
+    console.log(response)
     setUser(response.user);
 
     api.defaults.headers.common["Authorization"] = `Baerer ${response.token}`;
