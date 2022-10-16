@@ -1,18 +1,20 @@
 import { api } from "./api";
 
-interface Response {
-    token: string;
-    user: {
-        name: string;
-        email: string;
-    };
+interface IResponse {
+    data: {
+        token: string;
+        user?: {
+            name: string;
+            email: string;
+        };
+    }
 }
-type Request ={
-    password:string;
-    login:string;
+interface IRequest {
+    password: string;
+    login: string;
 }
 
 
-export async function signIn(data :Request): Promise<Response> {
-  return await api.post("/auth",data)
+export async function signIn(data: IRequest): Promise<IResponse> {
+    return api.post("/Auth", data)
 }

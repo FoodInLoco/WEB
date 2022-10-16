@@ -8,48 +8,61 @@ interface User {
   email: string;
 }
 
+type ILoginProps = {
+  login: string;
+  password: string;
+}
+
 interface AuthContextData {
   signed: boolean;
   user: User | null;
   loading: boolean;
-  signIn(): Promise<void>;
+  loadingSignIn: boolean;
+  signIn(login: ILoginProps): Promise<void>;
   signOut(): void;
 }
+
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthProvider = ({ children }: { children: any }) => {
-  const [user, setUser] = useLocalStorage("user", null);
-  const [token, setToken] = useLocalStorage("token", null);
+  const [user, setUser] = useLocalStorage("@FLAuth:user", null);
+  const [token, setToken] = useLocalStorage("@FLAuth:token", null);
   const [loading, setLoading] = useState(true);
+  const [loadingSignIn, setLoadingSignIn] = useState(false);
 
   useEffect(() => {
     async function loadStorageData() {
       const storagedUser = await user;
       const storagedToken = await token;
 
-      if (storagedUser && storagedToken) {
-        setUser("user", storagedUser);
+      if (storagedToken) {
         api.defaults.headers.common[
           "Authorization"
         ] = `Baerer ${storagedToken}`;
+        await setToken(storagedToken);
       }
 
+      if (storagedUser) {
+        await setUser(storagedUser);
+      }
       setLoading(false);
     }
-
     loadStorageData();
   });
 
-  async function signIn() {
-    const response = await auth.signIn({login:'macdonalds',password:'12345'});
-    console.log(response)
-    setUser(response.user);
-
-    api.defaults.headers.common["Authorization"] = `Baerer ${response.token}`;
-
-    await setUser("user", response.user);
-    await setToken("@RNAuth:token", response.token);
+  async function signIn({ login, password }: ILoginProps) {
+    try {
+      setLoadingSignIn(true)
+      const response = await auth.signIn({ login, password });
+      api.defaults.headers.common["Authorization"] = `Baerer ${response.data.token}`;
+      response.data.user && await setUser(response.data.user);
+      await setToken(response.data.token);
+    } catch (error) {
+      console.log("🚀 ~ file: auth.tsx ~ line 62 ~ signIn ~ error", error)
+    } finally {
+      setLoadingSignIn(false)
+    }
   }
 
   async function signOut() {
@@ -59,7 +72,7 @@ const AuthProvider = ({ children }: { children: any }) => {
 
   return (
     <AuthContext.Provider
-      value={{ signed: !!user, user, loading, signIn, signOut }}
+      value={{ signed: !!token, user, loading, signIn, signOut, loadingSignIn }}
     >
       {children}
     </AuthContext.Provider>

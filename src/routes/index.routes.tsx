@@ -3,7 +3,7 @@ import { useAuth } from "../contexts/auth";
 import { AppRoutes } from "./app.routes";
 
 const Routes = () => {
-  const { signed, loading } = useAuth();
+  const { loading } = useAuth();
 
   if (loading) {
     return <div>Carregando... </div>;

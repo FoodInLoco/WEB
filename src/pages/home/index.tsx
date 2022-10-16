@@ -10,16 +10,16 @@ export function Home() {
   return (
     <Box component="main" sx={{ p: 3, flexGrow: 1 }}>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={8} md={4}>
+        <Grid item xs={12} sm={4} md={4}>
           <MainCard text='Escolha a opção mais perto de você.' />
         </Grid>
         <Grid item xs={12} sm={8} md={8}>
           <Box
             sx={{
+              p: 0,
               display: 'flex',
-              gridTemplateColumn: { md: '2fr 2fr' },
               flexDirection: "column",
-              height: 700,
+              height: 710,
               overflow: "hidden",
               overflowX: "scroll",
               flexWrap: "wrap",
@@ -30,7 +30,7 @@ export function Home() {
               },
               "&::-webkit-scrollbar-thumb": {
                 backgroundColor: "#F16667",
-                borderRadius: 2
+                borderRadius: 1
               }
             }}          >
             {[0, 1, 2, 3, 4, 6, 8, 12, 16, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60].map((key) => (
