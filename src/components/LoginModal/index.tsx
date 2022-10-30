@@ -1,11 +1,11 @@
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { Button, Link, TextField } from '@mui/material';
+import { Button, CircularProgress, Link, TextField } from '@mui/material';
 import { Container, Content } from "./styles"
 import { useAuth } from '../../contexts/auth';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { toast } from 'react-toastify';
+import toastify from "../../utils/toasts"
 
 type ILoginModalProps = {
   open: boolean;
@@ -19,9 +19,7 @@ export function LoginModal({ open = false,
   const handleLogin = (data: { login: string; password: string; }) => {
     try {
       signIn(data);
-      return toast.success("Wow so easy!");
     } catch (err: any) {
-      toast("Wow so easy!");
 
     }
   }
@@ -60,6 +58,7 @@ export function LoginModal({ open = false,
           <form onSubmit={handleSubmit}>
             <TextField
               fullWidth
+              sx={{ m: 1 }}
               id="login"
               name="login"
               label="Email"
@@ -72,6 +71,7 @@ export function LoginModal({ open = false,
               fullWidth
               id="password"
               name="password"
+              sx={{ m: 1 }}
               label="Password"
               type="password"
               value={values.password}
@@ -79,8 +79,8 @@ export function LoginModal({ open = false,
               error={touched.password && Boolean(errors.password)}
               helperText={touched.password && errors.password}
             />
-            <Button color="primary" variant="contained" fullWidth type="submit">
-              {loadingSignIn ? 'Carregando' : 'Submit'}
+            <Button color="primary" variant="contained" fullWidth type="submit" disabled={loadingSignIn} sx={{ m: 1 }}>
+              {loadingSignIn ? <CircularProgress size={14} /> : 'Acessar'}
             </Button>
           </form>
           <Link id="modal-modal-description" sx={{ mt: 2, cursor: 'pointer' }} >

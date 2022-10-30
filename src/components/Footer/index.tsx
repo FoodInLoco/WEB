@@ -44,11 +44,11 @@ export function FooterComponent() {
         </TopBar> */}
         <HR />
         <BottomBar>
-            {menu.map(({ name, links }) => (
-                <Menu>
+            {menu.map(({ name, links }, index) => (
+                <Menu key={index}>
                     <MenuHead>{name}</MenuHead>
-                    {links.map(({ title, url }) => (
-                        <MenuLink href={url}>{title}</MenuLink>
+                    {links.map(({ title, url }, index) => (
+                        <MenuLink key={index} href={url}>{title}</MenuLink>
                     ))}
                 </Menu>
             ))}

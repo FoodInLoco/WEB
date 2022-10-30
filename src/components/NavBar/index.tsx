@@ -11,7 +11,7 @@ import { GoogleButton } from "../GoogleButton";
 import { LoginButton } from "../LoginButton";
 import { Logo } from "../Logo";
 import { LogoName } from "../LogoName";
-import { Search } from "../SearchBar";
+import Search from "../Search";
 import { LogoArea, Nav, NavBtn, NavLink, NavMenu } from "./styles";
 
 
@@ -43,7 +43,7 @@ export function Header() {
             <NavBtn>
               <GoogleButton />
               <LoginButton />
-              <Search />
+              <Search showDirectionIcon={false} placeholder="Encontrar restaurantes" />
             </NavBtn>
           </Nav>
         )}

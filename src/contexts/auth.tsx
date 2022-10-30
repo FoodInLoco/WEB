@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import * as auth from "../services/auth";
-import { api } from "../services/api";
+import api from "../services/api";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
 interface User {
@@ -40,7 +40,6 @@ const AuthProvider = ({ children }: { children: any }) => {
         api.defaults.headers.common[
           "Authorization"
         ] = `Baerer ${storagedToken}`;
-        await setToken(storagedToken);
       }
 
       if (storagedUser) {
@@ -52,14 +51,15 @@ const AuthProvider = ({ children }: { children: any }) => {
   });
 
   async function signIn({ login, password }: ILoginProps) {
+
     try {
       setLoadingSignIn(true)
       const response = await auth.signIn({ login, password });
       api.defaults.headers.common["Authorization"] = `Baerer ${response.data.token}`;
       response.data.user && await setUser(response.data.user);
       await setToken(response.data.token);
-    } catch (error) {
-      console.log("🚀 ~ file: auth.tsx ~ line 62 ~ signIn ~ error", error)
+    } catch (error: any) {
+      throw new Error(error?.message || "Houve um erro :/", { cause: error });
     } finally {
       setLoadingSignIn(false)
     }

@@ -1,12 +1,14 @@
 import { Routes, Route } from "react-router-dom";
 import { Home } from "../pages/home";
-import { Restaurant } from "../pages/home/Restaurant";
+import { Restaurant } from "../pages/Restaurant";
+import { SignUp } from "../pages/SignUp";
 export const AppRoutes = () => {
   return (
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/restaurant" element={<Restaurant />} />
+        <Route path="/restaurant/:id" element={<Restaurant />} />
+        <Route path="/signUp" element={<SignUp />} />
       </Routes>
     </>
   );

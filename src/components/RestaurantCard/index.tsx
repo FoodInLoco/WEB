@@ -1,49 +1,75 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Avatar, CardActionArea, CardHeader, IconButton } from '@mui/material';
-import { deepOrange, red } from '@mui/material/colors';
+import { red } from '@mui/material/colors';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Container } from './styles';
 import { useNavigate } from 'react-router-dom';
-
+import { handleAddress } from '../../utils/formatAddress';
+import Skeleton from '@mui/material/Skeleton';
 type IRestaurantProps = {
-  name: string
+  id: number;
+  companyName: string;
+  tradingName: string;
+  email: string;
+  ddd: string;
+  phoneNumber: string;
+  state: string;
+  city: string;
+  zipCode: string;
+  street: string;
+  number: number;
+  complement: string;
+  auth?: null;
 }
-export function RestaurandCard({ name }: IRestaurantProps) {
+export function RestaurandCard({ restaurant, isLoading }: { restaurant: IRestaurantProps, isLoading: boolean }) {
   const navigate = useNavigate();
   function handleClick() {
-    navigate(`/restaurant?name=${name}`);
+    navigate(`/restaurant/${restaurant?.id}`);
   }
-
+  const address = handleAddress({
+    address: {
+      ...restaurant,
+    }, type: 'short'
+  })
   return (
-    <Container sx={{ minWidth: 260, maxWidth: 260, marginBottom: 1, marginLeft: 2, borderRadius: 5 }}>
+    <Container sx={{ minWidth: 280, maxWidth: 260, marginBottom: 1, marginLeft: 2, borderRadius: 5 }}>
       <Card variant="outlined">
         <CardHeader
           avatar={
-            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              R
+            isLoading ? (
+              <Skeleton animation="wave" variant="circular" width={40} height={40} />
+            ) : <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+              {restaurant?.companyName[0]}
             </Avatar>
           }
           action={
-            <IconButton aria-label="settings">
+            isLoading ? null : <IconButton aria-label="settings">
               <MoreVertIcon />
             </IconButton>
           }
-          title="Titulo"
-          subheader="Localização"
+          title={isLoading ? <Skeleton
+            animation="wave"
+            height={10}
+            width="80%"
+            style={{ marginBottom: 6 }}
+          /> : restaurant?.companyName}
+          subheader={address}
         />
-        <CardActionArea onClick={handleClick}>
+        <CardActionArea onClick={isLoading ? () => null : handleClick}>
           <CardContent>
-            <Typography variant="body2">
-              Descrição
-              <br />
-              {'"teste"'}
-            </Typography>
+            {isLoading ?
+              <>
+                <Skeleton animation="wave" height={10} style={{ marginBottom: 6 }} />
+                <Skeleton animation="wave" height={10} width="80%" />
+              </> :
+              <Typography variant="body2">
+                {restaurant?.tradingName}
+                <br />
+                {'"teste"'}
+              </Typography>}
           </CardContent>
         </CardActionArea>
       </Card>

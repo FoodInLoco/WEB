@@ -1,6 +1,6 @@
 import { Paper } from "@mui/material";
 import theme from "../../theme";
-import { SearchByCity } from "../SearchByCity"
+import Search from "../Search";
 import { TitleCard, TextContainer } from "./styles"
 
 type IMainCardProps = {
@@ -21,7 +21,7 @@ export function MainCard({ text = "Você precisa digitar uma mensagem" }: IMainC
           {text}
         </TitleCard>
       </TextContainer>
-      <SearchByCity />
+      <Search placeholder="Busque pelo seu endereço" />
     </Paper >
   )
 }

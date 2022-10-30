@@ -1,0 +1,19 @@
+{
+  "Restaurant": [
+    {
+      "id": 1,
+      "companyName": "Mc Donalds",
+      "tradingName": "Méqui",
+      "email": "mcdonalds@foodinloco.com",
+      "ddd": "85",
+      "phoneNumber": "998888888",
+      "state": "Ceará",
+      "city": "Fortaleza",
+      "zipCode": "60841477",
+      "street": "Travessa Elisiário Mendes",
+      "number": 150,
+      "complement": "Apto 004, Bloco D",
+      "auth": null
+    }
+  ]
+}

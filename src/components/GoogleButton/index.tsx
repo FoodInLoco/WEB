@@ -4,7 +4,7 @@ type IGoogleButtonProps = {
   width?: string | number
   height?: string | number
 }
-export function GoogleButton({ width = '80%', height = '80%' }: IGoogleButtonProps) {
+export function GoogleButton({ width = '90%', height = '90%' }: IGoogleButtonProps) {
   const notify = () => <Alert severity="error">This is an error alert — check it out!</Alert>;
   return (
     <Container onClick={notify}>

@@ -1,14 +1,32 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { MainCard } from '../../components/MainCard';
-import { RestaurandCard } from '../../components/RestaurantCard';
-
+import BackgroundHome from "../../assets/background-home.png"
+import { useLayoutEffect, useState } from 'react';
+import { getAllRestaurants } from '../../services/restaurants';
+import toasts from '../../utils/toasts';
+import { RestaurantGrid } from '../../components/RestaurantGrid';
 export function Home() {
+  const [restaurantList, setRestaurantList] = useState()
+  const [loading, setLoading] = useState(false)
+  const handleRestaurants = async () => {
+    setLoading(true)
+    try {
+      const restaurants = await getAllRestaurants();
+      setRestaurantList(restaurants)
+    } catch (error: any) {
+      toasts.error(error)
+    } finally {
+      setLoading(false)
+    }
+
+  }
+  useLayoutEffect(() => {
+    handleRestaurants()
+  }, [])
+
   return (
-    <Box component="main" sx={{ p: 3, flexGrow: 1 }}>
+    <Box component="main" sx={{ p: 3, flexGrow: 1, backgroundColor: "#F8F5F6" }}>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={4} md={4}>
           <MainCard text='Escolha a opção mais perto de você.' />
@@ -20,6 +38,9 @@ export function Home() {
               display: 'flex',
               flexDirection: "column",
               height: 710,
+              backgroundImage: `url(${BackgroundHome})`,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
               overflow: "hidden",
               overflowX: "scroll",
               flexWrap: "wrap",
@@ -32,11 +53,8 @@ export function Home() {
                 backgroundColor: "#F16667",
                 borderRadius: 1
               }
-            }}          >
-            {[0, 1, 2, 3, 4, 6, 8, 12, 16, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60].map((key) => (
-              <RestaurandCard name={`Restaurant${key}`} key={key
-              } />
-            ))}
+            }}>
+            <RestaurantGrid restaurants={restaurantList} isLoading={loading} />
           </Box>
         </Grid>
       </Grid>

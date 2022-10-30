@@ -1,0 +1,24 @@
+interface IErrorParams {
+  status: number;
+  code: number;
+  title: string;
+  message: string;
+}
+
+export class ApiError extends Error {
+  public message = '';
+  public title = '';
+  public status = 0;
+  public code = 1;
+
+  constructor({ message, status, title, code = 0 }: IErrorParams) {
+    super(title);
+    this.message =
+      status >= 400 && status < 500
+        ? message
+        : 'Algo deu errado ao realizar a operação';
+    this.status = status;
+    this.title = title;
+    this.code = code;
+  }
+}
