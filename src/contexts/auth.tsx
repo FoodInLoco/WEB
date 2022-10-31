@@ -2,14 +2,18 @@ import { createContext, useState, useEffect, useContext } from "react";
 import * as auth from "../services/auth";
 import api from "../services/api";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import toasts from "../utils/toasts";
+import { handleErrors } from "../errors/errorHandler";
 
 interface User {
-  name: string;
+  firstName: string;
+  lastName: string;
+  id: number;
   email: string;
 }
 
 type ILoginProps = {
-  login: string;
+  email: string;
   password: string;
 }
 
@@ -50,16 +54,17 @@ const AuthProvider = ({ children }: { children: any }) => {
     loadStorageData();
   });
 
-  async function signIn({ login, password }: ILoginProps) {
+  async function signIn({ email, password }: ILoginProps) {
 
     try {
       setLoadingSignIn(true)
-      const response = await auth.signIn({ login, password });
-      api.defaults.headers.common["Authorization"] = `Baerer ${response.data.token}`;
+      const response = await auth.signIn({ email, password });
+
       response.data.user && await setUser(response.data.user);
-      await setToken(response.data.token);
+
+      await setToken({ token: response.data.token });
     } catch (error: any) {
-      throw new Error(error?.message || "Houve um erro :/", { cause: error });
+      handleErrors(error)
     } finally {
       setLoadingSignIn(false)
     }

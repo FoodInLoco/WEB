@@ -11,7 +11,7 @@ interface IResponse {
 }
 interface IRequest {
     password: string;
-    login: string;
+    email: string;
 }
 
 
