@@ -9,21 +9,7 @@ import { Container } from './styles';
 import { useNavigate } from 'react-router-dom';
 import { handleAddress } from '../../utils/formatAddress';
 import Skeleton from '@mui/material/Skeleton';
-type IRestaurantProps = {
-  id: number;
-  companyName: string;
-  tradingName: string;
-  email: string;
-  ddd: string;
-  phoneNumber: string;
-  state: string;
-  city: string;
-  zipCode: string;
-  street: string;
-  number: number;
-  complement: string;
-  auth?: null;
-}
+
 export function RestaurandCard({ restaurant, isLoading }: { restaurant: IRestaurantProps, isLoading: boolean }) {
   const navigate = useNavigate();
   function handleClick() {

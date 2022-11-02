@@ -1,12 +1,5 @@
 type handleAddressProps = {
-  address: {
-    state: string
-    city: string
-    zipCode: string
-    street: string
-    number: number
-    complement: string
-  },
+  address: IRestaurantProps
   type: 'short' | 'long'
 }
 export function handleAddress({ address, type }: handleAddressProps) {

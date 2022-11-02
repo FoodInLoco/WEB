@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": " APP_ENV=development && vite",
-    "build": "tsc && vite build",
+    "build": "VITE_API_URL=https://foodinloco-api.herokuapp.com/ && tsc && vite build",
     "preview": "vite preview",
     "json-server": " npx json-server --watch db.json"
   },
