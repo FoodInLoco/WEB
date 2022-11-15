@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
+import { handleErrors } from '../errors/errorHandler';
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -21,7 +22,6 @@ api.interceptors.response.use(
   },
   (error) => {
     if (error?.response?.status === 401) {
-      console.log(error)
     }
     throw error;
   }

@@ -3,8 +3,8 @@ import { toast } from "react-toastify";
 interface IToastProps {
   message: string
   status: number
-  title: string
-  code: string
+  title?: string
+  code?: string
 }
 class Toastfy {
   private toastBase = toast

@@ -1,64 +1,134 @@
 import { useState } from "react";
-import { Box, FormControl, InputLabel, Input, FormHelperText, OutlinedInput, FilledInput } from "@mui/material";
+import { Button, Typography, TextField, CircularProgress, Link } from "@mui/material";
+import InputMask from 'react-input-mask';
+import { useFormik } from 'formik';
+import * as Yup from "yup";
+import toasts from "../../utils/toasts";
+import { ArrowCircleLeft } from "@mui/icons-material";
+interface IFormInput {
+  firstName: string;
+  lastName: string;
+  email: string;
+  ddd: string;
+  phoneNumber: string;
+  password: string;
+  roles: number;
+}
+interface ISignUpFormProps {
+  goTo: (form: 'signin' | 'signup') => void;
+}
+export default function SignUpForm({ goTo }: ISignUpFormProps) {
 
-export default function SignUpForm() {
-  const [name, setName] = useState('Composed TextField');
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
-  };
+  const [loadingSignUp, setLoadingSignUp] = useState(false)
+
+  const schema = Yup.object().shape({
+    email: Yup.string().email('Digite um email válido.').required('Campo obrigatório'),
+    password: Yup.string().required('Campo obrigatório'),
+    firstName: Yup.string().required('Campo obrigatório'),
+    lastName: Yup.string().required('Campo obrigatório'),
+    phoneNumber: Yup.string().required('Campo obrigatório'),
+  });
+  const { handleSubmit, errors, values, handleChange, touched } = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+      firstName: "",
+      lastName: "",
+      phoneNumber: "",
+    },
+    validationSchema: schema,
+    onSubmit: async (values) => {
+      try {
+        toasts.success({ message: "Bem vindo de volta!", status: 200 })
+      } catch (error: any) {
+        toasts.error({ message: error.message, status: error.status })
+      }
+
+    },
+  });
+
   return (
-    <Box
-      component="form"
-      sx={{
-        '& > :not(style)': { m: 1 },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <FormControl variant="standard">
-        <InputLabel htmlFor="component-simple">Name</InputLabel>
-        <Input id="component-simple" value={name} onChange={handleChange} />
-      </FormControl>
-      <FormControl variant="standard">
-        <InputLabel htmlFor="component-helper">Name</InputLabel>
-        <Input
-          id="component-helper"
-          value={name}
+    <>
+      <Typography id="modal-modal-title" sx={{ margin: 1 }} variant="h6" component="h2">
+        Criar sua conta
+      </Typography>
+      <form onSubmit={handleSubmit}>
+        <TextField
+          fullWidth
+          sx={{ m: 1 }}
+          id="firstName"
+          name="firstName"
+          label="Nome"
+          value={values.firstName}
           onChange={handleChange}
-          aria-describedby="component-helper-text"
+          error={touched.firstName && Boolean(errors.firstName)}
+          helperText={touched.firstName && errors.firstName}
         />
-        <FormHelperText id="component-helper-text">
-          Some important helper text
-        </FormHelperText>
-      </FormControl>
-      <FormControl disabled variant="standard">
-        <InputLabel htmlFor="component-disabled">Name</InputLabel>
-        <Input id="component-disabled" value={name} onChange={handleChange} />
-        <FormHelperText>Disabled</FormHelperText>
-      </FormControl>
-      <FormControl error variant="standard">
-        <InputLabel htmlFor="component-error">Name</InputLabel>
-        <Input
-          id="component-error"
-          value={name}
+        <TextField
+          fullWidth
+          sx={{ m: 1 }}
+          id="lastName"
+          name="lastName"
+          label="Sobrenome"
+          value={values.lastName}
           onChange={handleChange}
-          aria-describedby="component-error-text"
+          error={touched.lastName && Boolean(errors.lastName)}
+          helperText={touched.lastName && errors.lastName}
         />
-        <FormHelperText id="component-error-text">Error</FormHelperText>
-      </FormControl>
-      <FormControl>
-        <InputLabel htmlFor="component-outlined">Name</InputLabel>
-        <OutlinedInput
-          id="component-outlined"
-          value={name}
+        <InputMask
+          mask="(99) 99999-9999"
+          value={values.phoneNumber}
+          disabled={false}
+          maskChar=" "
+          value={values.phoneNumber}
           onChange={handleChange}
-          label="Name"
+          error={touched.phoneNumber && Boolean(errors.phoneNumber)}
+          helperText={touched.phoneNumber && errors.phoneNumber}
+        >
+          {(inputProps) => <TextField
+            {...inputProps}
+            fullWidth
+            sx={{ m: 1 }}
+            id="phoneNumber"
+            name="phoneNumber"
+            label="Telefone"
+
+          />}
+        </InputMask>
+        <TextField
+          fullWidth
+          sx={{ m: 1 }}
+          id="email"
+          name="email"
+          label="Email"
+          value={values.email}
+          onChange={handleChange}
+          error={touched.email && Boolean(errors.email)}
+          helperText={touched.email && errors.email}
         />
-      </FormControl>
-      <FormControl variant="filled">
-        <InputLabel htmlFor="component-filled">Name</InputLabel>
-        <FilledInput id="component-filled" value={name} onChange={handleChange} />
-      </FormControl>
-    </Box>
+        <TextField
+          fullWidth
+          id="password"
+          name="password"
+          sx={{ m: 1 }}
+          label="Senha"
+          type="password"
+          value={values.password}
+          onChange={handleChange}
+          error={touched.password && Boolean(errors.password)}
+          helperText={touched.password && errors.password}
+        />
+        <Button color="primary" variant="contained" fullWidth type="submit" disabled={loadingSignUp} sx={{ m: 1 }}>
+          {loadingSignUp ? <CircularProgress size={14} /> : 'Criar conta'}
+        </Button>
+      </form>
+      <Link id="modal-modal-description" sx={{ mt: 2, cursor: 'pointer' }} onClick={() => goTo('signin')}>
+        <ArrowCircleLeft sx={{
+          display: 'inline',
+        }} />
+        Já tem conta? fazer seu login'.
+      </Link>
+    </>
   )
 }
+
