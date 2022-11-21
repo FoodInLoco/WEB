@@ -11,7 +11,7 @@ class Toastfy {
   public success({ message, status }: IToastProps) {
     return this.toastBase.success(`${status} - ${message}`)
   }
-  public error({ message, status }: IToastProps) {
+  public error({ message, status = 400 }: IToastProps) {
     return this.toastBase.error(`${status} - ${message}`)
   }
   public warning({ message, status }: IToastProps) {

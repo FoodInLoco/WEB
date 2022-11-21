@@ -13,12 +13,14 @@ import { Logo } from "../Logo";
 import { LogoName } from "../LogoName";
 import Search from "../Search";
 import { LogoArea, Nav, NavBtn, NavLink, NavMenu } from "./styles";
+import { useAuth } from "../../contexts/auth";
+import { ExitButton } from "../ExitButton";
 
 
 export function Header() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-
+  const { signed } = useAuth()
   return (
     <AppBar position="static" sx={{
       background: "#fff",
@@ -41,8 +43,7 @@ export function Header() {
               </NavLink>
             </NavMenu>
             <NavBtn>
-              <GoogleButton />
-              <LoginButton />
+              {signed ? <ExitButton /> : <LoginButton />}
               <Search showDirectionIcon={false} placeholder="Encontrar restaurantes" />
             </NavBtn>
           </Nav>

@@ -65,7 +65,7 @@ export function SignInForm({ goTo }: ISignInFormProps) {
         {loadingSignIn ? <CircularProgress size={14} /> : 'Acessar'}
       </Button>
     </form>
-    <Link id="modal-modal-description" sx={{ mt: 2, cursor: 'pointer' }} onClick={()=> goTo('signup')}>
+    <Link id="modal-modal-description" sx={{ mt: 2, cursor: 'pointer' }} onClick={() => goTo('signup')}>
       Novo por aqui? faça seu cadastro.
       <ArrowCircleRight sx={{
         display: 'inline',

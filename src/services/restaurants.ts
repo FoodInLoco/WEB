@@ -20,3 +20,13 @@ export async function getRestaurantById(id: string | undefined) {
     handleErrors(error)
   }
 }
+
+export async function getMenuBYRestaurant(id: string | undefined) {
+  try {
+    const response = await api.get(`/Restaurant/get-by-id?id=${id}`)
+    return response.data;
+  }
+  catch (error: any) {
+    handleErrors(error)
+  }
+}

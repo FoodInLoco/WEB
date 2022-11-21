@@ -5,6 +5,7 @@ import { useFormik } from 'formik';
 import * as Yup from "yup";
 import toasts from "../../utils/toasts";
 import { ArrowCircleLeft } from "@mui/icons-material";
+import { signUp } from "../../services/auth";
 interface IFormInput {
   firstName: string;
   lastName: string;
@@ -20,13 +21,12 @@ interface ISignUpFormProps {
 export default function SignUpForm({ goTo }: ISignUpFormProps) {
 
   const [loadingSignUp, setLoadingSignUp] = useState(false)
-
   const schema = Yup.object().shape({
     email: Yup.string().email('Digite um email válido.').required('Campo obrigatório'),
     password: Yup.string().required('Campo obrigatório'),
     firstName: Yup.string().required('Campo obrigatório'),
     lastName: Yup.string().required('Campo obrigatório'),
-    phoneNumber: Yup.string().required('Campo obrigatório'),
+    phoneNumber: Yup.string().required('Campo obrigatório')
   });
   const { handleSubmit, errors, values, handleChange, touched } = useFormik({
     initialValues: {
@@ -38,10 +38,16 @@ export default function SignUpForm({ goTo }: ISignUpFormProps) {
     },
     validationSchema: schema,
     onSubmit: async (values) => {
+      setLoadingSignUp(true)
+      const unformatedNumber = values.phoneNumber.replace(/[^0-9]+/g, '');
+      const payload = { ...values, ddd: `${unformatedNumber[0]}${unformatedNumber[0]}`, phoneNumber: unformatedNumber.slice(2), roles: 1 }
       try {
-        toasts.success({ message: "Bem vindo de volta!", status: 200 })
+        await signUp(payload);
+        toasts.success({ message: "Cadastro efetuado com sucesso!", status: 200 })
       } catch (error: any) {
         toasts.error({ message: error.message, status: error.status })
+      } finally {
+        setLoadingSignUp(false)
       }
 
     },
@@ -77,7 +83,6 @@ export default function SignUpForm({ goTo }: ISignUpFormProps) {
         />
         <InputMask
           mask="(99) 99999-9999"
-          value={values.phoneNumber}
           disabled={false}
           maskChar=" "
           value={values.phoneNumber}
@@ -85,7 +90,7 @@ export default function SignUpForm({ goTo }: ISignUpFormProps) {
           error={touched.phoneNumber && Boolean(errors.phoneNumber)}
           helperText={touched.phoneNumber && errors.phoneNumber}
         >
-          {(inputProps) => <TextField
+          {(inputProps: any): JSX.Element => <TextField
             {...inputProps}
             fullWidth
             sx={{ m: 1 }}
@@ -126,7 +131,7 @@ export default function SignUpForm({ goTo }: ISignUpFormProps) {
         <ArrowCircleLeft sx={{
           display: 'inline',
         }} />
-        Já tem conta? fazer seu login'.
+        Já tem conta? faça seu login.
       </Link>
     </>
   )
