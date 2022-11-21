@@ -87,18 +87,15 @@ export default function SignUpForm({ goTo }: ISignUpFormProps) {
           maskChar=" "
           value={values.phoneNumber}
           onChange={handleChange}
-          error={touched.phoneNumber && Boolean(errors.phoneNumber)}
-          helperText={touched.phoneNumber && errors.phoneNumber}
         >
-          {(inputProps: any): JSX.Element => <TextField
-            {...inputProps}
+          <TextField
             fullWidth
+            error={touched.phoneNumber && Boolean(errors.phoneNumber)}
+            helperText={touched.phoneNumber && errors.phoneNumber}
             sx={{ m: 1 }}
             id="phoneNumber"
             name="phoneNumber"
-            label="Telefone"
-
-          />}
+            label="Telefone" />
         </InputMask>
         <TextField
           fullWidth
@@ -127,6 +124,12 @@ export default function SignUpForm({ goTo }: ISignUpFormProps) {
           {loadingSignUp ? <CircularProgress size={14} /> : 'Criar conta'}
         </Button>
       </form>
+      <Link id="modal-modal-description" sx={{ mt: 2, cursor: 'pointer' }} onClick={() => goTo('signin')}>
+        <ArrowCircleLeft sx={{
+          display: 'inline',
+        }} />
+        Quero cadastrar meu estabelecimento
+      </Link>
       <Link id="modal-modal-description" sx={{ mt: 2, cursor: 'pointer' }} onClick={() => goTo('signin')}>
         <ArrowCircleLeft sx={{
           display: 'inline',

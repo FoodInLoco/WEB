@@ -8,7 +8,7 @@ export function SignUp() {
 
   return (
     <Box component="main" sx={{ p: 3, flexGrow: 1 }}>
-      <SignUpForm />
+      <SignUpForm goTo={() => null} />
     </Box>
   )
 }

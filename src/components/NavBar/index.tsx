@@ -15,6 +15,7 @@ import Search from "../Search";
 import { LogoArea, Nav, NavBtn, NavLink, NavMenu } from "./styles";
 import { useAuth } from "../../contexts/auth";
 import { ExitButton } from "../ExitButton";
+import { ProfileModal } from "../ProfileModal";
 
 
 export function Header() {
@@ -38,12 +39,17 @@ export function Header() {
               <NavLink to='/'>
                 Restaurantes
               </NavLink>
-              <NavLink to='/restaurant' >
-                Lojas
-              </NavLink>
+              {signed &&
+                <NavLink to='/reservations' >
+                  Minhas reservas
+                </NavLink>
+              }
             </NavMenu>
             <NavBtn>
-              {signed ? <ExitButton /> : <LoginButton />}
+              {signed ? <>
+                <ProfileModal /> 
+                <ExitButton />
+              </> : <LoginButton />}
               <Search showDirectionIcon={false} placeholder="Encontrar restaurantes" />
             </NavBtn>
           </Nav>
