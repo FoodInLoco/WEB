@@ -57,7 +57,7 @@ export function RestaurantInfo({ isLoading, restaurant }: IRestaurantInfo) {
             ({restaurant?.ddd}) {restaurant?.phoneNumber} - {restaurant?.email}
           </Typography>}
 
-        {isLoading ?
+        {/* {isLoading ?
           <>
             <Skeleton animation="wave" height={10} style={{ marginBottom: 6 }} />
             <Skeleton animation="wave" height={10} width="80%" />
@@ -66,7 +66,7 @@ export function RestaurantInfo({ isLoading, restaurant }: IRestaurantInfo) {
             Horário de funcionamento:
             <br />
             ({restaurant?.ddd}) {restaurant?.phoneNumber} - {restaurant?.email}
-          </Typography>}
+          </Typography>} */}
       </CardContent>
     </Card>
   </Container>
