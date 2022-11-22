@@ -20,6 +20,16 @@ export function RestaurandCard({ restaurant, isLoading }: { restaurant: IRestaur
       ...restaurant,
     }, type: 'short'
   })
+
+  const handleAvatar = () => {
+    if (restaurant && restaurant?.photo) {
+      return <Avatar src={restaurant.photo} />
+    } else {
+      return <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+        {restaurant?.companyName[0]}
+      </Avatar>
+    }
+  }
   return (
     <Container sx={{ minWidth: 280, maxWidth: 260, marginBottom: 1, marginLeft: 2, borderRadius: 5 }}>
       <Card variant="outlined">
@@ -27,10 +37,7 @@ export function RestaurandCard({ restaurant, isLoading }: { restaurant: IRestaur
           avatar={
             isLoading ? (
               <Skeleton animation="wave" variant="circular" width={40} height={40} />
-            ) : <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              {restaurant?.companyName[0]}
-            </Avatar>
-          }
+            ) : handleAvatar()}
           action={
             isLoading ? null : <IconButton aria-label="settings">
               <MoreVertIcon />

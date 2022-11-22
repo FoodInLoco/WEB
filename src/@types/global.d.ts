@@ -4,6 +4,7 @@ declare global {
 
   interface IRestaurantProps {
     id?: number;
+    photo?: string;
     companyName: string;
     tradingName: string;
     email: string;

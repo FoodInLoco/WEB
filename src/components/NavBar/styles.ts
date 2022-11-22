@@ -22,7 +22,7 @@ z-index: 12;
 
 export const NavLink = styled(Link)`
 font-family: 'Lexend Deca';
-margin: 0 10%;
+margin: 0 1%;
 color: #808080;
 font-style: normal;
 font-weight: 700;

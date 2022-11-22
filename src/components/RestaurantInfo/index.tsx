@@ -12,15 +12,23 @@ export function RestaurantInfo({ isLoading, restaurant }: IRestaurantInfo) {
       ...restaurant,
     }, type: 'long'
   }) : "Localização não fornecida"
+
+  const handleAvatar = () => {
+    if (restaurant && restaurant?.photo) {
+      return <Avatar src={restaurant.photo} sx={{ width: 80, height: 80 }} />
+    } else {
+      return <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+        {restaurant?.companyName[0]}
+      </Avatar>
+    }
+  }
   return <Container sx={{ borderRadius: 5, minHeight: '60vh' }}>
     <Card variant="outlined">
       <CardHeader
         avatar={
           isLoading ? (
             <Skeleton animation="wave" variant="circular" width={80} height={80} />
-          ) : <Avatar sx={{ bgcolor: red[500], width: 80, height: 80, fontSize: 40 }} aria-label="recipe">
-            {restaurant?.companyName[0]}
-          </Avatar>
+          ) : handleAvatar()
         }
         title={isLoading ? <Skeleton
           animation="wave"

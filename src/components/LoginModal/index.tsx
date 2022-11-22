@@ -16,7 +16,10 @@ export function LoginModal({ open = false,
   setOpen }: ILoginModalProps) {
 
   const [currentModal, setCurrentModal] = useState<EnumForm>('signin')
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    setCurrentModal('signin')
+  };
   const handelChangeForm = (form: EnumForm) => setCurrentModal(form)
   return (
     <Container>
@@ -27,7 +30,7 @@ export function LoginModal({ open = false,
         aria-describedby="modal-modal-description"
       >
         <Content>
-          {currentModal === 'signin' ? <SignInForm goTo={handelChangeForm} /> : <SignUpForm  goTo={handelChangeForm}/>}
+          {currentModal === 'signin' ? <SignInForm goTo={handelChangeForm} /> : <SignUpForm goTo={handelChangeForm} />}
         </Content>
       </Modal>
     </Container>

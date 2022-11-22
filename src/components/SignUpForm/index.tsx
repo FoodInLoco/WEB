@@ -4,7 +4,7 @@ import InputMask from 'react-input-mask';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
 import toasts from "../../utils/toasts";
-import { ArrowCircleLeft } from "@mui/icons-material";
+import { ArrowCircleLeft, BusinessCenter } from "@mui/icons-material";
 import { signUp } from "../../services/auth";
 interface IFormInput {
   firstName: string;
@@ -124,12 +124,7 @@ export default function SignUpForm({ goTo }: ISignUpFormProps) {
           {loadingSignUp ? <CircularProgress size={14} /> : 'Criar conta'}
         </Button>
       </form>
-      <Link id="modal-modal-description" sx={{ mt: 2, cursor: 'pointer' }} onClick={() => goTo('signin')}>
-        <ArrowCircleLeft sx={{
-          display: 'inline',
-        }} />
-        Quero cadastrar meu estabelecimento
-      </Link>
+   
       <Link id="modal-modal-description" sx={{ mt: 2, cursor: 'pointer' }} onClick={() => goTo('signin')}>
         <ArrowCircleLeft sx={{
           display: 'inline',

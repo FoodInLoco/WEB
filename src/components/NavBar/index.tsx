@@ -40,14 +40,19 @@ export function Header() {
                 Restaurantes
               </NavLink>
               {signed &&
-                <NavLink to='/reservations' >
-                  Minhas reservas
-                </NavLink>
+                <>
+                  <NavLink to='/reservations' >
+                    Minhas reservas
+                  </NavLink>
+                  <NavLink to='/restaurant-register' >
+                    Cadastrar um restaurante
+                  </NavLink>
+                </>
               }
             </NavMenu>
             <NavBtn>
               {signed ? <>
-                <ProfileModal /> 
+                <ProfileModal />
                 <ExitButton />
               </> : <LoginButton />}
               <Search showDirectionIcon={false} placeholder="Encontrar restaurantes" />
