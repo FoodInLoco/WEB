@@ -8,7 +8,6 @@ interface IRestaurantInfo {
 }
 
 export function RestaurantInfo({ isLoading, restaurant }: IRestaurantInfo) {
-  console.log("🚀 ~ file: index.tsx ~ line 11 ~ RestaurantInfo ~ restaurant", restaurant)
   const address = restaurant ? handleAddress({
     address: {
       ...restaurant,
