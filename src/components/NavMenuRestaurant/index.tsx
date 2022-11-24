@@ -6,6 +6,10 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { Avatar, Skeleton } from '@mui/material';
+
+
+
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -41,7 +45,8 @@ function a11yProps(index: number) {
   };
 }
 
-export function TabRestaurant() {
+export function TabRestaurant({ menus }: { menus: Menu[] | undefined }) {
+  console.log("🚀 ~ file: index.tsx ~ line 47 ~ TabRestaurant ~ menu", menus)
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
@@ -55,35 +60,59 @@ export function TabRestaurant() {
 
   return (
     <Box sx={{ bgcolor: 'background.paper', width: '100%' }}>
-      <AppBar position="static">
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="secondary"
-          textColor="inherit"
-          variant="fullWidth"
-          aria-label="full width tabs example"
+      {menus ? <>
+        <AppBar position="static">
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            indicatorColor="secondary"
+            textColor="inherit"
+            variant="fullWidth"
+            aria-label="full width tabs example"
+          >{
+              menus.map((menu, index) => (
+                <Tab label={menu.name} {...a11yProps(index)} />
+              ))
+            }
+
+          </Tabs>
+        </AppBar>
+        <SwipeableViews
+          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+          index={value}
+          onChangeIndex={handleChangeIndex}
         >
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
-        </Tabs>
-      </AppBar>
-      <SwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={value}
-        onChangeIndex={handleChangeIndex}
-      >
-        <TabPanel value={value} index={0} dir={theme.direction}>
-          Item One
-        </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction}>
-          Item Two
-        </TabPanel>
-        <TabPanel value={value} index={2} dir={theme.direction}>
-          Item Three
-        </TabPanel>
-      </SwipeableViews>
+
+          {
+            menus.map((menu, index) => (
+              <TabPanel value={value} index={index} dir={theme.direction}>
+                {menu.photo && <Avatar src={menu.photo} sx={{ width: 60, height: 60 }} />}
+                {menu.items.map((menu, index) => (
+                  <>
+                    <span>Prato: </span>
+                    <span>{menu.name}</span>
+                    <br />
+                  </>
+                ))}
+              </TabPanel>
+            ))
+          }
+        </SwipeableViews>
+      </> : <div
+        style={{
+          marginRight: 20,
+          marginLeft: 20
+        }}>
+        <Skeleton animation="wave"
+          height={50}
+          width="100%"
+
+        />
+        <Skeleton animation="wave"
+          height={500}
+          width="100%"
+        />
+      </div>}
     </Box>
   );
 }

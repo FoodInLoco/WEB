@@ -31,7 +31,7 @@ export function Restaurant() {
     <Box component="main" sx={{ p: 3, flexGrow: 1, backgroundColor: "#F8F5F6", margin: 5 }}>
       <Grid container spacing={3} sx={{ minHeight: '80vh' }}>
         <Grid item xs={12} sm={8} md={8}>
-          <TabRestaurant />
+          <TabRestaurant menus={restaurant?.menus}/>
         </Grid>
         <Grid item xs={12} sm={4} md={4}>
           <RestaurantInfo isLoading={loading} restaurant={restaurant} />

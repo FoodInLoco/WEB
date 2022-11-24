@@ -1,18 +1,21 @@
 import { Avatar, Card, CardActionArea, CardContent, CardHeader, Container, IconButton, Skeleton, Typography } from "@mui/material";
 import { red } from "@mui/material/colors";
 import { handleAddress } from "../../utils/formatAddress";
+import { handlePhone } from "../../utils/formatPhone";
 interface IRestaurantInfo {
   isLoading: boolean;
   restaurant: IRestaurantProps | undefined | null
 }
 
 export function RestaurantInfo({ isLoading, restaurant }: IRestaurantInfo) {
+  console.log("🚀 ~ file: index.tsx ~ line 11 ~ RestaurantInfo ~ restaurant", restaurant)
   const address = restaurant ? handleAddress({
     address: {
       ...restaurant,
     }, type: 'long'
   }) : "Localização não fornecida"
-
+  
+  const phoneNumber = restaurant ? handlePhone(restaurant?.phoneNumber) : "email não fornecido"
   const handleAvatar = () => {
     if (restaurant && restaurant?.photo) {
       return <Avatar src={restaurant.photo} sx={{ width: 80, height: 80 }} />
@@ -42,7 +45,7 @@ export function RestaurantInfo({ isLoading, restaurant }: IRestaurantInfo) {
           height={10}
           width="80%"
           style={{ marginBottom: 6 }}
-        /> : address
+        /> : restaurant?.tradingName
         }
       />
       <CardContent sx={{ minHeight: '62vh' }}>
@@ -54,7 +57,17 @@ export function RestaurantInfo({ isLoading, restaurant }: IRestaurantInfo) {
           <Typography variant="h6">
             Contato:
             <br />
-            ({restaurant?.ddd}) {restaurant?.phoneNumber} - {restaurant?.email}
+            ({restaurant?.ddd}) {phoneNumber} - {restaurant?.email}
+          </Typography>}
+        {isLoading ?
+          <>
+            <Skeleton animation="wave" height={10} style={{ marginBottom: 6 }} />
+            <Skeleton animation="wave" height={10} width="80%" />
+          </> :
+          <Typography variant="h6">
+            Endereço:
+            <br />
+            {address}
           </Typography>}
 
         {/* {isLoading ?
