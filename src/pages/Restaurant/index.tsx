@@ -6,11 +6,12 @@ import toasts from "../../utils/toasts";
 import { RestaurantInfo } from "../../components/RestaurantInfo";
 import { TabRestaurant } from "../../components/NavMenuRestaurant";
 import { Assignment } from '@mui/icons-material';
+import { ReservationModal } from "../../components/ReservationModal";
 
 export function Restaurant() {
   const [loading, setLoading] = useState(false)
   const [restaurant, setRestaurant] = useState<IRestaurantProps | null>()
-
+  const [open, setOpen] = useState(false)
   const params = useParams();
   const handleRestaurants = async () => {
     setLoading(true)
@@ -28,7 +29,8 @@ export function Restaurant() {
     handleRestaurants()
   }, [])
 
-  return (
+  return (<>
+    <ReservationModal open={open} setOpen={setOpen} code={restaurant?.id} />
     <Box component="main" sx={{ p: 3, flexGrow: 1, backgroundColor: "#F8F5F6", margin: 5 }}>
       <Grid container spacing={3} sx={{ minHeight: '80vh' }}>
         <Grid item xs={12} sm={8} md={8}>
@@ -42,11 +44,13 @@ export function Restaurant() {
             sx={{ marginLeft: 3, marginBottom: 3 }}
             aria-label="Disabled elevation buttons"
           >
-            <Button>Reservar mesa</Button>
+            <Button
+              onClick={() => setOpen(true)}
+            >Reservar mesa</Button>
           </ButtonGroup>
           <RestaurantInfo isLoading={loading} restaurant={restaurant} />
         </Grid>
       </Grid>
     </Box>
-  );
+  </>);
 }

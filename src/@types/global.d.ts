@@ -3,8 +3,7 @@ export { };
 declare global {
 
   interface IRestaurantProps {
-    id?: number;
-    id: string
+    id?: string
   createdAt: string
   lastUpdatedAt: any
   userId: string
