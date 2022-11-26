@@ -11,6 +11,19 @@ export async function getAllRestaurants() {
   }
 }
 
+export async function getReservationByUser(data: any) {
+  try {
+    const response = await api.get("/Reservation/get-by-user", {
+      params: data
+    })
+    return response.data;
+  }
+  catch (error: any) {
+    handleErrors(error)
+  }
+}
+
+
 export async function getRestaurantById(id: string | undefined) {
   try {
     const response = await api.get(`/Restaurant/get-by-id?id=${id}`)
@@ -24,7 +37,7 @@ export async function getRestaurantById(id: string | undefined) {
 export async function createReservation(payload: {
   restaurantId?: string,
   seatQuantity: number,
-  date: string,
+  date: any,
   description: string
 }) {
   try {
@@ -32,6 +45,16 @@ export async function createReservation(payload: {
     return response.data;
   }
   catch (error: any) {
-    handleErrors(error)
+    return handleErrors(error)
+  }
+}
+
+export async function createRestaurant(payload: any) {
+  try {
+    const response = await api.post(`/Restaurant`, payload)
+    return response.data;
+  }
+  catch (error: any) {
+    return handleErrors(error)
   }
 }

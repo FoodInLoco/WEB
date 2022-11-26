@@ -46,7 +46,6 @@ function a11yProps(index: number) {
 }
 
 export function TabRestaurant({ menus }: { menus: Menu[] | undefined }) {
-  console.log("🚀 ~ file: index.tsx ~ line 47 ~ TabRestaurant ~ menu", menus)
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 

@@ -5,14 +5,14 @@ import { getRestaurantById } from "../../services/restaurants";
 import toasts from "../../utils/toasts";
 import { RestaurantInfo } from "../../components/RestaurantInfo";
 import { TabRestaurant } from "../../components/NavMenuRestaurant";
-import { Assignment } from '@mui/icons-material';
 import { ReservationModal } from "../../components/ReservationModal";
-
+import { useAuth } from "../../contexts/auth";
 export function Restaurant() {
   const [loading, setLoading] = useState(false)
   const [restaurant, setRestaurant] = useState<IRestaurantProps | null>()
   const [open, setOpen] = useState(false)
   const params = useParams();
+  const { signed } = useAuth()
   const handleRestaurants = async () => {
     setLoading(true)
     try {
@@ -24,6 +24,10 @@ export function Restaurant() {
       setLoading(false)
     }
 
+  }
+  const onActionReserv = () => {
+
+    signed ? setOpen(true) : toasts.warning({ message: 'Você precisa estar logado!', status: 500 })
   }
   useLayoutEffect(() => {
     handleRestaurants()
@@ -45,7 +49,7 @@ export function Restaurant() {
             aria-label="Disabled elevation buttons"
           >
             <Button
-              onClick={() => setOpen(true)}
+              onClick={onActionReserv}
             >Reservar mesa</Button>
           </ButtonGroup>
           <RestaurantInfo isLoading={loading} restaurant={restaurant} />

@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Button, Typography, TextField, CircularProgress, Link, Box, FormControl } from "@mui/material";
+import { Button, Typography, TextField, CircularProgress, Link, Box, FormControl, Switch, FormGroup, FormControlLabel } from "@mui/material";
 import InputMask from 'react-input-mask';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
 import toasts from "../../utils/toasts";
-import { ArrowCircleLeft, BusinessCenter } from "@mui/icons-material";
 import { signUp } from "../../services/auth";
 import { getAdress } from "../../utils/searchAdress";
+import { createRestaurant } from "../../services/restaurants";
 
 interface ISignUpFormProps {
 }
@@ -14,9 +14,10 @@ export function CreateRestaurantForm({ }: ISignUpFormProps) {
 
   const [loadingSignUp, setLoadingSignUp] = useState(false)
   const [loadingAdress, setLoadingAdress] = useState(false)
+  const [kids, setKids] = useState(false)
   const schema = Yup.object().shape({
     companyName: Yup.string().required('Campo obrigatório'),
-    TradingName: Yup.string().required('Campo obrigatório'),
+    tradingName: Yup.string().required('Campo obrigatório'),
     email: Yup.string().email('Digite um email válido.').required('Campo obrigatório'),
     phoneNumber: Yup.string().required('Campo obrigatório'),
     state: Yup.string().required('Campo obrigatório'),
@@ -30,7 +31,7 @@ export function CreateRestaurantForm({ }: ISignUpFormProps) {
   const { handleSubmit, errors, values, handleChange, touched, setErrors, setValues } = useFormik({
     initialValues: {
       companyName: "",
-      TradingName: "",
+      tradingName: "",
       email: "",
       phoneNumber: "",
       state: "",
@@ -45,8 +46,9 @@ export function CreateRestaurantForm({ }: ISignUpFormProps) {
     onSubmit: async (values) => {
       setLoadingSignUp(true)
       const unformatedNumber = values.phoneNumber.replace(/[^0-9]+/g, '');
-      const payload = { ...values, ddd: `${unformatedNumber[0]}${unformatedNumber[0]}`, phoneNumber: unformatedNumber.slice(2), roles: 1 }
+      const payload = { ...values, ddd: `${unformatedNumber[0]}${unformatedNumber[0]}`, phoneNumber: unformatedNumber.slice(2), roles: 1, kids }
       try {
+        const res = await createRestaurant(payload)
         toasts.success({ message: "Cadastro efetuado com sucesso!", status: 200 })
       } catch (error: any) {
         toasts.error({ message: error.message, status: error.status })
@@ -107,10 +109,10 @@ export function CreateRestaurantForm({ }: ISignUpFormProps) {
               id="tradingName"
               name="tradingName"
               label="Nome Fantasia"
-              value={values.TradingName}
+              value={values.tradingName}
               onChange={handleChange}
-              error={touched.TradingName && Boolean(errors.TradingName)}
-              helperText={touched.TradingName && errors.TradingName}
+              error={touched.tradingName && Boolean(errors.tradingName)}
+              helperText={touched.tradingName && errors.tradingName}
             />
           </FormControl>
           <FormControl sx={{ m: 1, width: '36ch' }}>
@@ -229,6 +231,12 @@ export function CreateRestaurantForm({ }: ISignUpFormProps) {
               error={touched.complement && Boolean(errors.complement)}
               helperText={touched.complement && errors.complement}
             />
+          </FormControl>
+          <FormControl sx={{ m: 1, width: '40ch' }}>
+            <FormGroup>
+              <FormControlLabel control={<Switch defaultChecked checked={kids}
+                onChange={() => setKids(prev => !prev)} />} label="Epaço para crianças" />
+            </FormGroup>
           </FormControl>
           <Button color="primary" variant="contained" fullWidth type="submit" disabled={loadingSignUp} sx={{ m: 1 }}>
             {loadingSignUp ? <CircularProgress size={14} /> : 'Criar Restaurante'}

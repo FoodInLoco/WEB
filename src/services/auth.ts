@@ -1,3 +1,4 @@
+import { useAuth } from "../contexts/auth";
 import { handleErrors } from "../errors/errorHandler";
 import api from "./api";
 
@@ -27,6 +28,10 @@ interface IRequestSignUp {
 
 export async function signIn(data: IRequestSignIn): Promise<IResponse> {
     return api.post("/Auth", data)
+}
+
+export async function getUser() {
+    return api.get("/Auth")
 }
 
 export async function signUp(data: IRequestSignUp) {

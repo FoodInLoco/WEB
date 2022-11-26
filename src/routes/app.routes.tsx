@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { useAuth } from "../contexts/auth";
 import { CreateRestaurantPage } from "../pages/CreateRestaurant";
 import { Home } from "../pages/Home";
+import { ListReservations } from "../pages/ListReservations";
 import { Restaurant } from "../pages/Restaurant";
 import { SignUp } from "../pages/SignUp";
 export const AppRoutes = () => {
@@ -15,7 +16,7 @@ export const AppRoutes = () => {
         <Route path="/signUp" element={<SignUp />} />
         {signed &&
           <>
-            <Route path="/reservations" element={<SignUp />} />
+            <Route path="/reservations" element={<ListReservations />} />
             <Route path="/restaurant-register" element={<CreateRestaurantPage />} />
           </>
         }

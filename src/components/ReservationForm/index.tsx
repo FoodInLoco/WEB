@@ -26,10 +26,9 @@ export function ReservationForm({ idRestaurant }: { idRestaurant: string | undef
     },
     validationSchema: schema,
     onSubmit: async (values) => {
-      console.log("🚀 ~ file: index.tsx  line 28 ~ onSubmit: ~ values", { ...values, idRestaurant })
       setLoadingSignUp(true)
-      await createReservation({ date: values.date.toString(), description: values.description, restaurantId: idRestaurant, seatQuantity: values.seatQuantity })
       try {
+        await createReservation({ date: values.date, description: values.description, restaurantId: idRestaurant, seatQuantity: values.seatQuantity })
         toasts.success({ message:"Solicitação enviada!", status: 200 })
       } catch (error: any) {
         toasts.error({ message: error.message, status: error.status })

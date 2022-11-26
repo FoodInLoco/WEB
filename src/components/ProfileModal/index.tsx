@@ -47,7 +47,11 @@ export function ProfileModal() {
       <DialogTitle>{"Seu perfil"}</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-slide-description">
-          {user?.firstName}
+          <span>{user?.firstName}</span>
+          <br />
+          <span>{user?.lastName}</span>
+          <br />
+          <span>{user?.email}</span>
         </DialogContentText>
       </DialogContent>
       <DialogActions>
