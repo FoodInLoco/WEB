@@ -8,7 +8,7 @@ import moment from "moment";
 import { createReservation } from "../../services/restaurants";
 
 
-export function ReservationForm({ idRestaurant }: { idRestaurant: string | undefined }): JSX.Element {
+export function ReservationForm({ idRestaurant, closeModal }: { idRestaurant: string | undefined, closeModal: () => void }): JSX.Element {
 
   const [loadingSignUp, setLoadingSignUp] = useState(false)
   const [loadingAdress, setLoadingAdress] = useState(false)
@@ -28,8 +28,9 @@ export function ReservationForm({ idRestaurant }: { idRestaurant: string | undef
     onSubmit: async (values) => {
       setLoadingSignUp(true)
       try {
-        await createReservation({ date: values.date, description: values.description, restaurantId: idRestaurant, seatQuantity: values.seatQuantity })
-        toasts.success({ message:"Solicitação enviada!", status: 200 })
+        await createReservation({ date: moment(values.date), description: values.description, restaurantId: idRestaurant, seatQuantity: values.seatQuantity })
+        closeModal()
+        toasts.success({ message: "Solicitação enviada!", status: 200 })
       } catch (error: any) {
         toasts.error({ message: error.message, status: error.status })
       } finally {

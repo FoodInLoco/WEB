@@ -15,8 +15,8 @@ export function ListReservations() {
   const handleRestaurants = async () => {
     setLoading(true)
     try {
-      const restaurants = await getReservationByUser({ date: new Date(), id: user?.id });
-      setReservationsList(restaurants.data)
+      const restaurants = await getReservationByUser({  userId: user?.id });
+      setReservationsList(restaurants)
     } catch (error: any) {
       toasts.error(error)
     } finally {

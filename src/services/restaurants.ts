@@ -34,6 +34,18 @@ export async function getRestaurantById(id: string | undefined) {
   }
 }
 
+
+export async function cancelReservation(id: string | undefined) {
+  try {
+    const response = await api.get(`/Reservation/disconfirm?id=${id}`)
+    return response.data;
+  }
+  catch (error: any) {
+    handleErrors(error)
+  }
+}
+
+
 export async function createReservation(payload: {
   restaurantId?: string,
   seatQuantity: number,

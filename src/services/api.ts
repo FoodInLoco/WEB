@@ -6,11 +6,11 @@ const api = axios.create({
 });
 
 api.interceptors.request.use(async (config: AxiosRequestConfig) => {
-  const token = localStorage.getItem("@FLAuth:token")
-  if (token) {
+  const auth: any = localStorage.getItem("@FLAuth:token")
+  if (auth) {
     api.defaults.headers.common[
       "Authorization"
-    ] = `Baerer ${token}`;
+    ] = `bearer ${JSON.parse(auth)?.token}`;
   }
 
   return config;

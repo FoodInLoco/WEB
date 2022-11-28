@@ -27,7 +27,7 @@ export function ReservationModal({ open, setOpen, code }: IModalProps) {
         aria-describedby="modal-modal-description"
       >
         <Content>
-          <ReservationForm idRestaurant={code} />
+          <ReservationForm idRestaurant={code} closeModal={handleClose} />
         </Content>
       </Modal>
     </Container>

@@ -1,17 +1,9 @@
 import { AppStoreApp, BottomBar, DesktopSocialList, Facebook, Footer, GetTheApp, GetTheAppTitle, GoogleApp, HR, Instagram, Menu, MenuHead, MenuLink, MobileSocialList, Policy, PolicyRow, TopBar, Twitter } from "./styles";
 
 const menu = [
+
     {
-        name: "Links",
-        links: [
-            { title: "link", url: "www.openfit.com" },
-            { title: "link", url: "www.openfit.com" },
-            { title: "link", url: "www.openfit.com" },
-            { title: "link", url: "www.openfit.com" }
-        ]
-    },
-    {
-        name: "About Us",
+        name: "Sobre Nós",
         links: [
             { title: "Fundadores", url: "www.openfit.com" },
             { title: "Instituição", url: "www.openfit.com" },
@@ -74,9 +66,8 @@ export function FooterComponent() {
                     or provide any medical advice, diagnosis, or treatment.
                 </PolicyRow>
                 <PolicyRow>
-                    © Copyright 2021 - iFood - Todos os direitos reservados iFood com Agência de Restaurantes Online S.A.
+                    © Copyright 2021 - FoodInLoco - Todos os direitos reservados FoodInLoco com Agência de Restaurantes Online S.A.
 
-                    CNPJ 14.380.200/0001-21 / Avenida dos Autonomistas, nº 1496, Vila Yara, Osasco/SP - CEP 06.020-902
                 </PolicyRow>
             </Policy>
         </BottomBar>

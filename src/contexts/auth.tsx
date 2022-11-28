@@ -38,14 +38,8 @@ const AuthProvider = ({ children }: { children: any }) => {
   useEffect(() => {
     async function loadStorageData() {
       const storagedUser = await user;
-      const storagedToken = await token;
 
-      if (storagedToken) {
-        api.defaults.headers.common[
-          "Authorization"
-        ] = `Baerer ${storagedToken}`;
-      }
-
+    
       if (storagedUser) {
         await setUser(storagedUser);
       }
