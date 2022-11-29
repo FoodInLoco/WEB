@@ -20,6 +20,8 @@ export function RestaurantInfo({ isLoading, restaurant }: IRestaurantInfo) {
     }, type: 'long'
   }) : "Localização não fornecida"
   
+  const urlMap = "https://www.google.com/maps/embed/v1/place?key={API-KEY}&q=".replace("{API-KEY}", "AIzaSyCNjlWkP3O8VP5Q6dlKOgtqBu4HIXsTG7g").concat(address.replace(' ', '+'))
+
   const phoneNumber = restaurant ? handlePhone(restaurant?.phoneNumber) : "email não fornecido"
   const handleAvatar = () => {
     if (restaurant && restaurant?.photo) {
@@ -113,6 +115,10 @@ export function RestaurantInfo({ isLoading, restaurant }: IRestaurantInfo) {
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           {address}
+          <iframe
+            loading="lazy"
+            src={urlMap}>
+          </iframe>
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
           <Table size="small">
