@@ -1,4 +1,4 @@
-import { Avatar, Box, Card, CardActionArea, CardContent, CardHeader, Container, IconButton, Skeleton, Tab, Tabs, Typography } from "@mui/material";
+import { Avatar, Box, Card, CardActionArea, CardContent, CardHeader, Container, IconButton, Skeleton, Tab, Table, TableBody, TableCell, TableHead, TableRow, Tabs, Typography } from "@mui/material";
 import { red } from "@mui/material/colors";
 import { useTheme } from '@mui/material/styles';
 import ContactsIcon from '@mui/icons-material/Contacts';
@@ -115,7 +115,52 @@ export function RestaurantInfo({ isLoading, restaurant }: IRestaurantInfo) {
           {address}
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          
+          <Table size="small">
+            <TableHead>
+              <TableRow>
+                <TableCell>Dia</TableCell>
+                <TableCell>Abertura</TableCell>
+                <TableCell>Fechamento</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell>Domingo</TableCell>
+                <TableCell>08:00</TableCell>
+                <TableCell>22:00</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Segunda</TableCell>
+                <TableCell>08:00</TableCell>
+                <TableCell>22:00</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Terça</TableCell>
+                <TableCell>08:00</TableCell>
+                <TableCell>22:00</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Quarta</TableCell>
+                <TableCell>08:00</TableCell>
+                <TableCell>22:00</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Quinta</TableCell>
+                <TableCell>08:00</TableCell>
+                <TableCell>22:00</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Sexta</TableCell>
+                <TableCell>08:00</TableCell>
+                <TableCell>22:00</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Sábado</TableCell>
+                <TableCell>08:00</TableCell>
+                <TableCell>22:00</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
         </TabPanel>
       </CardContent>
     </Card>
