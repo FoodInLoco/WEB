@@ -1,4 +1,4 @@
-import { Avatar, Box, Card, CardActionArea, CardContent, CardHeader, Container, IconButton, Skeleton, Tab, Table, TableBody, TableCell, TableHead, TableRow, Tabs, Typography } from "@mui/material";
+import { Avatar, Box, Card, CardActionArea, CardContent, CardHeader, Chip, Container, IconButton, Skeleton, Tab, Table, TableBody, TableCell, TableHead, TableRow, Tabs, Typography } from "@mui/material";
 import { red } from "@mui/material/colors";
 import { useTheme } from '@mui/material/styles';
 import ContactsIcon from '@mui/icons-material/Contacts';
@@ -19,7 +19,7 @@ export function RestaurantInfo({ isLoading, restaurant }: IRestaurantInfo) {
       ...restaurant,
     }, type: 'long'
   }) : "Localização não fornecida"
-  
+
   const urlMap = "https://www.google.com/maps/embed/v1/place?key={API-KEY}&q=".replace("{API-KEY}", "AIzaSyCNjlWkP3O8VP5Q6dlKOgtqBu4HIXsTG7g").concat(address.replace(' ', '+'))
 
   const phoneNumber = restaurant ? handlePhone(restaurant?.phoneNumber) : "email não fornecido"
@@ -32,7 +32,7 @@ export function RestaurantInfo({ isLoading, restaurant }: IRestaurantInfo) {
       </Avatar>
     }
   }
-  
+
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -49,10 +49,10 @@ export function RestaurantInfo({ isLoading, restaurant }: IRestaurantInfo) {
     index: number;
     value: number;
   }
-  
+
   function TabPanel(props: TabPanelProps) {
     const { children, value, index, ...other } = props;
-  
+
     return (
       <div
         role="tabpanel"
@@ -69,7 +69,7 @@ export function RestaurantInfo({ isLoading, restaurant }: IRestaurantInfo) {
       </div>
     );
   }
-  
+
   function a11yProps(index: number) {
     return {
       id: `full-width-tab-${index}`,
@@ -78,7 +78,7 @@ export function RestaurantInfo({ isLoading, restaurant }: IRestaurantInfo) {
   }
 
   const theme = useTheme();
-  
+
   return <Container sx={{ borderRadius: 5, minHeight: '60vh' }}>
     <Card variant="outlined">
       <CardHeader
@@ -92,7 +92,10 @@ export function RestaurantInfo({ isLoading, restaurant }: IRestaurantInfo) {
           height={10}
           width="80%"
           style={{ marginBottom: 6 }}
-        /> : <h2>{restaurant?.companyName}</h2>
+        /> : <Box>
+          <Box ><Chip label="Vazio" color="warning" /></Box>
+          <h2>{restaurant?.companyName}</h2>
+        </Box>
         }
         subheader={isLoading ? <Skeleton
           animation="wave"
@@ -110,7 +113,7 @@ export function RestaurantInfo({ isLoading, restaurant }: IRestaurantInfo) {
         </Tabs>
         <TabPanel value={value} index={0} dir={theme.direction}>
           <Phone /> ({restaurant?.ddd}) {phoneNumber}
-          <br/>
+          <br />
           <Email /> {restaurant?.email}
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
